@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استودیو فیلتر تصویر - حرفه‌ای</title>
+    <meta name="description" content="استودیو حرفه‌ای فیلتر تصویر با فیلترهای علمی و هنری، رابط کاربری مدرن و تجربه‌ کاربری روان.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <link href="../css/styles.css" rel="stylesheet">
+    
+    <!-- MathJax for rendering LaTeX formulas -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-gradient-to-bl from-teal-900 via-zinc-800 to-indigo-900 min-h-screen text-white">
+    <div class="relative min-h-screen overflow-hidden">
+        <!-- Decorative background orbs -->
+        <div class="pointer-events-none absolute -left-40 -top-40 h-80 w-80 rounded-full bg-purple-500/25 blur-3xl"></div>
+        <div class="pointer-events-none absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-blue-500/15 blur-3xl"></div>
+
+        <div class="container mx-auto px-4 py-8 relative">
+            <!-- Top Navigation -->
+            <nav class="flex items-center justify-between mb-8 md:mb-10">
+                <div class="flex items-center gap-3">
+                    <div class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-blue-500 shadow-lg shadow-purple-500/40">
+                        <i class="fas fa-wand-magic-sparkles text-xl text-white"></i>
+                    </div>
+                    <div class="hidden sm:block text-right">
+                        <p class="text-sm text-slate-100">استودیو فیلتر تصویر</p>
+                        <p class="text-xs text-slate-300">محیطی حرفه‌ای برای ویرایش خلاقانه</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <a href="professional_index.html" class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-white/15">
+                        <i class="fas fa-image text-xs"></i>
+                        <span>ویرایش تصویر</span>
+                    </a>
+                    <a href="professional_realtime.html" class="inline-flex items-center gap-2 rounded-full border border-transparent px-4 py-2 text-sm font-medium text-slate-200 hover:border-white/20 hover:bg-white/5">
+                        <i class="fas fa-video text-xs"></i>
+                        <span>فیلتر زنده</span>
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Hero -->
+            <header class="mb-10 md:mb-12 text-center md:text-right">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 bg-gradient-to-l from-blue-400 via-sky-300 to-purple-400 bg-clip-text text-transparent">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/wsaaegar.json"
+                        trigger="loop"
+                        delay="2000"
+                        stroke="bold"
+                        colors="primary:#e4e4e4,secondary:#fae6d1"
+                        style="width:70px;height:70px">
+                    </lord-icon>
+                    استودیو حرفه‌ای فیلتر تصویر
+                </h1>
+                <p class="text-base md:text-lg text-slate-200 max-w-2xl mx-auto md:mx-0">
+                    تصویر خود را با فیلترهای علمی و هنری، به زیباترین نسخه‌اش تبدیل کنید؛ سریع، دقیق و کاملاً تحت کنترل شما.
+                </p>
+
+                <!-- Steps -->
+                <div class="mt-6 grid gap-4 sm:grid-cols-3 text-sm">
+                    <div class="glass-effect rounded-2xl p-4 flex flex-col items-center sm:items-start">
+                        <span class="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold">۱</span>
+                        <p class="font-semibold mb-1">آپلود هوشمند تصویر</p>
+                        <p class="text-slate-300 text-xs">فقط بکشید و رها کنید؛ ما بقیه را انجام می‌دهیم.</p>
+                    </div>
+                    <div class="glass-effect rounded-2xl p-4 flex flex-col items-center sm:items-start">
+                        <span class="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold">۲</span>
+                        <p class="font-semibold mb-1">انتخاب از میان ده‌ها فیلتر</p>
+                        <p class="text-slate-300 text-xs">از فیلترهای علمی تا افکت‌های هنری و سینماتیک.</p>
+                    </div>
+                    <div class="glass-effect rounded-2xl p-4 flex flex-col items-center sm:items-start">
+                        <span class="mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full bg-purple-500/20 text-purple-200 text-xs font-semibold">۳</span>
+                        <p class="font-semibold mb-1">تنظیمات دقیق و خروجی نهایی</p>
+                        <p class="text-slate-300 text-xs">هر جزئیات را با اسلایدرها تنظیم و تصویر نهایی را دانلود کنید.</p>
+                    </div>
+                </div>
+            </header>
+
+        <!-- Upload Section -->
+        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 mb-8 border border-white/20 shadow-2xl">
+            <div id="uploadSection" class="text-center">
+                <div id="uploadBox" class="border-3 border-dashed border-purple-400 rounded-2xl p-12 bg-gradient-to-br from-purple-500/10 to-blue-500/10 hover:from-purple-500/20 hover:to-blue-500/20 transition-all duration-300 cursor-pointer relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <i class="fas fa-cloud-upload-alt text-6xl text-purple-400 mb-6"></i>
+                    <h3 class="text-2xl font-bold text-white mb-4">تصویر خود را آپلود کنید</h3>
+                    <p class="text-gray-300 mb-4">فایل را اینجا بکشید یا کلیک کنید</p>
+                    <p class="text-sm text-gray-400">پشتیبانی از فرمت‌های: JPG, PNG, GIF, BMP (حداکثر 10MB)</p>
+                    <input type="file" id="fileInput" accept="image/*" class="hidden">
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent" class="hidden">
+            <!-- Before/After Slider -->
+            <div class="mb-8">
+                <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center">مقایسه قبل و بعد</h3>
+                    <div class="slider-container relative">
+                        <img id="originalImage" class="slider-image" src="" alt="تصویر اصلی">
+                        <img id="filteredImage" class="slider-image" src="" alt="تصویر فیلتر شده" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+                        <div class="slider-handle" id="sliderHandle" style="left: 711.2px;"></div>
+                        <div class="absolute top-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg font-semibold">
+                            فیلتر شده
+                        </div>
+                        <div class="absolute top-4 right-4 bg-black/50 text-white px-4 py-2 rounded-lg font-semibold">
+                            اصلی
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Filter Categories -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl h-full">
+                        <h3 class="text-xl font-bold text-white mb-6 text-center">دسته‌بندی فیلترها</h3>
+
+                        <!-- Main Categories -->
+                        <div class="space-y-2 mb-6" id="mainCategoryTabs">
+                            <button class="category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 active" data-category="all">
+                                <i class="fas fa-light fa-table-cells fa-beat ml-2"></i> همه
+                            </button>
+                            <button class="category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="main-filters">
+                                <i class="fas fa-solid fa-house fa-beat ml-2"></i> فیلتر های اصلی
+                            </button>
+                            <button class="category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Noise Filters">
+                                <i class="fas fa-solid fa-wave-square fa-beat ml-2"></i> فیلترهای نویز
+                            </button>
+                            <button class="category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="other">
+                                <i class="fas fa-ellipsis-h fa-beat ml-2"></i> سایر فیلترها
+                            </button>
+                        </div>
+
+                        <!-- Subcategories - Hidden by default -->
+                        <div class="space-y-2 mb-6 hidden" id="subcategoryTabs">
+                            <div class="text-center text-gray-400 text-sm mb-3">زیرمجموعه‌های فیلترهای اصلی:</div>
+                            <button class="subcategory-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="اصلاح نور و کنتراست">
+                                <i class="fa-regular fa-sun fa-spin ml-2"></i> اصلاح نور و کنتراست
+                            </button>
+                            <button class="subcategory-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="پردازش هیستوگرام">
+                                <i class="fa-solid fa-chart-column fa-beat ml-2"></i> پردازش هیستوگرام
+                            </button>
+                            <button class="subcategory-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="کاهش نویز و هموارسازی">
+                                <i class="fa-solid fa-water fa-beat ml-2"></i> کاهش نویز و هموارسازی
+                            </button>
+                            <button class="subcategory-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="لبه‌یابی و تیزسازی">
+                                <i class="fas fa-regular fa-burst fa-spin-pulse ml-2"></i> لبه‌یابی و تیزسازی
+                            </button>
+                            <button class="subcategory-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="پردازش در حوزه فرکانس">
+                                <i class="fas fa-regular fa-wave-square fa-beat ml-2"></i> پردازش در حوزه فرکانس
+                            </button>
+                        </div>
+
+                        <!-- Other Categories - Hidden by default -->
+                        <div class="space-y-2 mb-6 hidden" id="otherCategoryTabs">
+                            <div class="text-center text-gray-400 text-sm mb-3">سایر دسته‌بندی‌ها:</div>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Vintage">
+                                <i class="fas fa-solid fa-film fa-beat ml-2"></i> قدیمی و فیلم
+                            </button>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Basic">
+                                <i class="fas fa-adjust fa-beat ml-2"></i> پایه
+                            </button>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Color">
+                                <i class="fas fa-solid fa-palette fa-beat ml-2"></i> رنگی
+                            </button>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="BlackWhite">
+                                <i class="fas fa-solid fa-circle-half-stroke fa-beat ml-2"></i> سفید و سیاه
+                            </button>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Blur">
+                                <i class="fas fa-solid fa-water fa-beat ml-2"></i> محو
+                            </button>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Edge Detection">
+                                <i class="fas fa-regular fa-draw-polygon fa-beat ml-2"></i> تشخیص لبه
+                            </button>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Artistic">
+                                <i class="fas fa-regular fa-paintbrush fa-beat ml-2"></i> هنری
+                            </button>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Special">
+                                <i class="fas fa-solid fa-wand-sparkles fa-beat ml-2"></i> خاص
+                            </button>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Technical">
+                                <i class="fas fa-regular fa-wave-square fa-beat ml-2"></i> تکنیکی
+                            </button>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Distortion">
+                                <i class="fas fa-regular fa-expand fa-beat ml-2"></i> تغییر شکل
+                            </button>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Lighting">
+                                <i class="fas fa-regular fa-sun fa-spin ml-2"></i> نور و سایه
+                            </button>
+                            <button class="other-category-tab w-full text-right py-3 px-4 rounded-xl font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200" data-category="Noise Filters">
+                                <i class="fas fa-solid fa-wave-square fa-beat ml-2"></i> نویز
+                            </button>
+                        </div>
+
+                        <!-- Current Filter Info -->
+                        <div class="bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl p-4 border border-white/10">
+                            <h4 class="text-lg font-semibold text-white mb-2">فیلتر فعلی</h4>
+                            <p id="currentFilterName" class="text-gray-300 text-sm mb-3">هیچ فیلتری انتخاب نشده</p>
+                            <div id="filterDescription" class="text-gray-400 text-xs leading-relaxed"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Grid -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl">
+                        <h3 class="text-xl font-bold text-white mb-6 text-center">انتخاب فیلتر</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-7" id="filtersGrid">
+                            <!-- Filters will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filter Settings -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 shadow-2xl h-full">
+                        <h3 class="text-xl font-bold text-white mb-6 text-center">تنظیمات فیلتر</h3>
+                        <div id="settingsContainer" class="space-y-4">
+                            <div class="text-center text-gray-400 py-8">
+                                <i class="fas fa-sliders-h text-4xl mb-4"></i>
+                                <p>تنظیمات فیلتر را انتخاب کنید</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="mt-8 space-y-3">
+                            <button onclick="applyFilter()" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                <i class="fas fa-magic ml-2"></i> اعمال فیلتر
+                            </button>
+                            <button onclick="setAsOriginal()" class="w-full bg-gradient-to-r from-indigo-500 to-blue-600 hover:from-indigo-600 hover:to-blue-700 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                <i class="fas fa-sync-alt ml-2"></i> تنظیم به عنوان تصویر اصلی
+                            </button>
+                            <button onclick="resetToOriginal()" class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                <i class="fas fa-undo ml-2"></i> بازگشت به تصویر اصلی
+                            </button>
+                            <button onclick="downloadImage()" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                <i class="fas fa-download ml-2"></i> دانلود تصویر
+                            </button>
+                            <button onclick="resetImage()" class="w-full bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                                <i class="fas fa-redo ml-2"></i> شروع مجدد
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 text-center">
+                <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-purple-400 mx-auto mb-4"></div>
+                <p class="text-white text-lg font-semibold">در حال پردازش تصویر...</p>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="fixed bottom-6 right-6 bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20 shadow-2xl transform transition-all duration-300 translate-x-full opacity-0 z-50">
+            <div class="flex items-center">
+                <i id="toastIcon" class="fas fa-check-circle text-green-400 text-xl ml-3"></i>
+                <span id="toastMessage" class="text-white font-medium"></span>
+            </div>
+        </div>
+        </div> <!-- /container -->
+    </div> <!-- /page wrapper -->
+
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="../javascript/script.js"> </script>
+</body>
+</html>
